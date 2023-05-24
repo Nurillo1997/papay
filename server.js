@@ -1,10 +1,13 @@
+//mongodb stringi securitysi uchun
+const dotenv = require("dotenv");
+dotenv.config();
+
 const http = require("http");
 const mongodb = require("mongodb");
 
 // MongoDB connect
 
-const connectionString = "mongodb+srv://nurillo:1NLCmexNK2u6B57J@cluster0.ibcschz.mongodb.net/Reja";
-
+const connectionString = process.env.MONGO_URL;
 mongodb.connect(connectionString,
     {
         useNewUrlParser: true,

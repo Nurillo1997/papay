@@ -4,8 +4,6 @@ const app = express();
 const router = require("./router");
 
 // MongoDB chaqirish
-const db = require("./server").db();
-const mongodb = require("mongodb");
 
 //1: kirish code
 //Express middleware

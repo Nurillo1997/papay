@@ -4,6 +4,7 @@ dotenv.config();
 
 const http = require("http");
 const mongoose = require("mongoose");
+mongoose.set('strictQuery', false);
 
 // MongoDB connect
 

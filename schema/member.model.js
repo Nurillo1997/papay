@@ -1,17 +1,18 @@
-const mongoose  = require("mongoose");
-const { member_type_enums, member_status_enums, ordernary_enums} = require("../lib/config");
+const mongoose = require("mongoose");
+const { member_type_enums, member_status_enums, ordernary_enums } = require("../lib/config");
 
 const memberSchema = new mongoose.Schema({
-    mb_nick:{
+    mb_nick: {
         type: String,
         required: true,
-        index: {unique: true, sparse: true}
+        index: { unique: true, sparse: true }
     },
-    mb_phone:{
+    mb_phone: {
         type: String,
         required: true,
+        select: false
     },
-    mb_password:{
+    mb_password: {
         type: String,
         required: true,
         select: false
@@ -35,55 +36,55 @@ const memberSchema = new mongoose.Schema({
         }
     },
 
-    mb_address:{
+    mb_address: {
         type: String,
         required: false
     },
-    mb_description:{
+    mb_description: {
         type: String,
         required: false
     },
-    mb_image:{
+    mb_image: {
         type: String,
         required: false
     },
-    mb_point:{
+    mb_point: {
         type: Number,
         required: false,
         default: 0
 
     },
-    mb_top:{
+    mb_top: {
         type: String,
         required: false,
         default: "N",
-        enum:{
+        enum: {
             values: ordernary_enums,
             message: "{VALUE} is not among permitted values"
         }
 
     },
-    mb_views:{
+    mb_views: {
         type: Number,
         required: false,
         default: 0
     },
-    mb_likes:{
+    mb_likes: {
         type: Number,
         required: false,
         default: 0
     },
-    mb_follow_cnt:{
+    mb_follow_cnt: {
         type: Number,
         required: false,
         default: 0
     },
-    mb_subscriber_cnt:{
+    mb_subscriber_cnt: {
         type: Number,
         required: false,
         default: 0
     },
-    
-},{timestamps: true});
+
+}, { timestamps: true });
 
 module.exports = mongoose.model("Member", memberSchema);

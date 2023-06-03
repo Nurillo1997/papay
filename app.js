@@ -2,6 +2,7 @@ console.log("Web Serverni boshlash");
 const express = require("express");
 const app = express();
 const router = require("./router");
+const router_bssr = require("./router_bssr.js");
 
 // MongoDB chaqirish
 
@@ -29,7 +30,7 @@ app.set("views", "views");
 app.set("view engine", "ejs");
 
 //4:Routing code
-// app.use("/resto",router_bssr);
+app.use("/resto",router_bssr);
 app.use("/",router);
 
 module.exports = app;

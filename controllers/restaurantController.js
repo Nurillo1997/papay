@@ -61,7 +61,8 @@ restaurantController.loginProcess = async (req, res) => {
 
         req.session.member = result;
         req.session.save(function () {
-            res.redirect('/resto/products/menu')
+            res.redirect('/resto/products/menu');
+            //res.redirect boshqa pagega jo'natadi
         });
 
     } catch (err) {

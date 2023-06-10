@@ -20,10 +20,14 @@ router_bssr.get("/logout", restaurantController.logout);
 router_bssr.get("/check-me", restaurantController.checkSessions);
 
 router_bssr.get("/products/menu", restaurantController.getSignupMyRestaurantData);
-router_bssr.post("/products/create", restaurantController.validateAuthRestaurant,
-uploader_product.array('product_images', 5),
+router_bssr.post(
+    "/products/create",
+    restaurantController.validateAuthRestaurant,
+    uploader_product.array('product_images', 5), // product_image bu field name
     productController.addNewProduct);
-router_bssr.post("/products/edit/:id", productController.updateChoosenProduct);
+router_bssr.post("/products/edit/:id",
+    restaurantController.validateAuthRestaurant,
+    productController.updateChoosenProduct);
 
 
 module.exports = router_bssr;

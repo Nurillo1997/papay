@@ -13,18 +13,20 @@ const store = new MongoDBStore({
 
 //1: kirish code
 //Express middleware
-app.use(express.static("public"));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
-//2:Session code
+
+app.use(express.static("public"));//static filelar uchun req kelsa birinchi publicdan istaydi
+app.use(express.json()); //json formatidagi requestni handle qilish imkoniyatini beradi
+app.use(express.urlencoded({ extended: true }));//encoded formatni handle qilishga yordam beradi
+
+//2:Session code cookiesni ichidagi session id ni sholishtiradi auth bo'layotganda
 app.use(
     session({ 
         secret: process.env.SESSION_SECRET,
     cookie: {
         maxAge: 1000 * 60 * 60,
     },
-    store: store,
+    store: store,//mongodb databasega session documentiga saqlansin
     resave: true,
     saveUninitialized: true,
 })
@@ -40,7 +42,7 @@ app.set("views", "views");
 app.set("view engine", "ejs");
 
 //4:Routing code
-app.use("/resto",router_bssr);
-app.use("/",router);
+app.use("/resto",router_bssr);// CLASSIC API
+app.use("/",router); //REST API with react
 
 module.exports = app;

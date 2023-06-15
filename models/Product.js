@@ -12,8 +12,8 @@ class Product {
 
     async getAllProductsDataResto(member){
         try {
-            member._id = shapeIntoMongooseObjectId(member._id);
-            const result = await this.productModel.find({
+            member._id = shapeIntoMongooseObjectId(member._id);//member idni mongodb ojectga aylantirish kerak
+            const result = await this.productModel.find({    //chunki u string holatda kels mongo db tushunmaydi
                 restaurant_mb_id: member._id
             });
             assert.ok(result, Definer.general_err1);
@@ -44,8 +44,9 @@ class Product {
             mb_id = shapeIntoMongooseObjectId(mb_id);
 
             const result = await this.productModel.findOneAndUpdate(
-                {_id: id, restaurant_mb_id: mb_id},
+                {_id: id, restaurant_mb_id: mb_id},//birinchisi filtering qaysi objectni update qilmoqchisiz / 
                 updated_data,
+                // o'zgargan qiymatni qaytarishda
                 {
                     runValidators: true, 
                     lean: true, 

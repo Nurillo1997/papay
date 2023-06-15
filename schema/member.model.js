@@ -5,25 +5,24 @@ const memberSchema = new mongoose.Schema({
     mb_nick: {
         type: String,
         required: true,
-        index: { unique: true, sparse: true }
+        index: { unique: true, sparse: true }// birov ishlatgan nickni birov ishlatmasligi uchun
     },
     mb_phone: {
         type: String,
         required: true,
-        select: false
     },
     mb_password: {
         type: String,
         required: true, 
-        select: false
+        select: false// bu secret bo'lgligi uchun req bo'lganda database qaytarmasligi uchun
     },
     mb_type: {
         type: String,
         required: false,
-        default: "USER",
+        default: "USER",// agar hechnarsa kiritilmasa default USER qiymatini oladi
         enum: {
-            values: member_type_enums,
-            message: "{VALUE} is not among permitted values"
+            values: member_type_enums, //faqat shu valuelarni ololadi
+            message: "{VALUE} is not among permitted values"// undan boshqa value berilsa shu message chiqadi
         }
     },
     mb_status: {
@@ -87,4 +86,4 @@ const memberSchema = new mongoose.Schema({
 
 }, { timestamps: true });
 
-module.exports = mongoose.model("Member", memberSchema);
+module.exports = mongoose.model("Member", memberSchema);//Member desakham avtomatic database "s" qo'shib ko'plikka o'tkazadi

@@ -4,11 +4,14 @@ dotenv.config();
 
 const http = require("http");
 const mongoose = require("mongoose");
+
+/**is used to disable strict mode for querying in Mongoose, 
+ * which is an Object Data Modeling (ODM) library for MongoDB and Node.js. */
 mongoose.set('strictQuery', false);
 
 // MongoDB connect
 
-const connectionString = process.env.MONGO_URL;
+const connectionString = process.env.MONGO_URL; //process.env dotenv ni objecti
 mongoose.connect(connectionString,
     {
         useNewUrlParser: true,

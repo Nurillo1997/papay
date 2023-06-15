@@ -22,10 +22,9 @@ productController.addNewProduct = async (req, res) => {
 
         const product = new Product();
         let data = req.body;
-        data.product_images = req.files.map(ele => {
-            return ele.path;
+        data.product_images = req.files.map((ele) => {
+            return ele.path;// product_imagesni pathini ovolypmiz
         });
-
 
         const result = await product.addNewProductData(data, req.member);
         const html = `<script>
@@ -36,7 +35,6 @@ productController.addNewProduct = async (req, res) => {
         res.end(html);
     } catch (err) {
         console.log(`ERROR: cont/addNewProduct ${err.message}`);
-
     }
 };
 productController.updateChoosenProduct = async (req, res) => {

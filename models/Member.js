@@ -4,14 +4,14 @@ const assert = require("assert");
 const bcrypt = require("bcryptjs")
 class Member {
     constructor() {
-        this.memberModel = MemberModel;
+        this.memberModel = MemberModel;//MemberModel mongodb classi
     }
     async signupData(input) {
         try {
             const salt = await bcrypt.genSalt();
             input.mb_password = await bcrypt.hash(input.mb_password, salt);
             let result;
-            const new_member = new this.memberModel(input);
+            const new_member = new this.memberModel(input); 
             try {
                 result = await new_member.save();
             }
@@ -19,7 +19,7 @@ class Member {
                 console.log(mongo_err);
                 throw new Error(Definer.auth_err1);
             }
-            console.log(result);
+            console.log("result: ",result);
 
             result.mb_password = "";
             return result;
@@ -32,18 +32,22 @@ class Member {
     async loginData(input) {
         try {
             const member = await this.memberModel
-                .findOne({ mb_nick: input.mb_nick }, { mb_nick: 1, mb_password: 1 })
+                .findOne({ mb_nick: input.mb_nick }, 
+                         { mb_nick: 1, mb_password: 1 })//forced chaqirib olish 1 degani kerak degani
                 .exec();
 
             assert.ok(member, Definer.auth_err3);
+            console.log("1", member);
 
             const isMatch = bcrypt.compare (
                 input.mb_password, 
                 member.mb_password);
                 
+                console.log("2", isMatch);
             assert.ok(isMatch, Definer.auth_err4);
 
-            return await this.memberModel.findOne({ mb_nick: input.mb_nick }).exec();
+            return await this.memberModel.
+            findOne({ mb_nick: input.mb_nick }).exec();
 
         } catch (err) {
             throw err;

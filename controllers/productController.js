@@ -1,6 +1,7 @@
 const Product = require("../models/Product");
 const Definer = require("../lib/mistake");
 const assert = require("assert");
+// const html = require("html");
 
 let productController = module.exports;
 
@@ -22,17 +23,18 @@ productController.addNewProduct = async (req, res) => {
 
         const product = new Product();
         let data = req.body;
-        data.product_images = req.files.map((ele) => {
+
+        data.product_images = req.files.map(ele => {
             return ele.path;// product_imagesni pathini ovolypmiz
         });
 
         const result = await product.addNewProductData(data, req.member);
         const html = `<script>
-                        alert(new dusg added successfully);
-                        window.location.replace("/resto/product/menu);
-                    </script>`;
-
+                   alert("New product added successfully");
+                   window.location.replace('/resto/products/menu');
+                 </script>`;
         res.end(html);
+
     } catch (err) {
         console.log(`ERROR: cont/addNewProduct ${err.message}`);
     }
@@ -51,7 +53,7 @@ productController.updateChoosenProduct = async (req, res) => {
 
     } catch (err) {
         console.log(`ERROR: cont/updateChoosenProduct ${err.message}`);
-
+        res.json({ state: "fail", message: err.message });
     }
 };
 

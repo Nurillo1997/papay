@@ -6,7 +6,7 @@ const uploader_product = require('./utils/upload-multer')("products");
 const uploader_members = require('./utils/upload-multer')("members");
 
 /******************************************
- *             BSSR EJS                   *
+ *             BSSR EJS      form bilan             *
  *****************************************/
 
 // memberga dahldor router__bssrlar

@@ -30,9 +30,16 @@ router_bssr.post(
     restaurantController.validateAuthRestaurant,
     uploader_product.array('product_images', 5), // product_image bu field name
     productController.addNewProduct);
-router_bssr.post("/products/edit/:id",
+router_bssr.post(
+    "/products/edit/:id",
     restaurantController.validateAuthRestaurant,
     productController.updateChoosenProduct);
+
+router_bssr.get
+    ("/all-restaurants", 
+    restaurantController.validateAdmin, 
+    restaurantController.getAllRestaurants
+    );
 
 
 module.exports = router_bssr;

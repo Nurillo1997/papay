@@ -36,9 +36,15 @@ router_bssr.post(
     productController.updateChoosenProduct);
 
 router_bssr.get
-    ("/all-restaurants", 
-    restaurantController.validateAdmin, 
-    restaurantController.getAllRestaurants
+    ("/all-restaurants",
+        restaurantController.validateAdmin,
+        restaurantController.getAllRestaurants
+    );
+
+router_bssr.post
+    ("/all-restaurants/edit",
+        restaurantController.validateAdmin,
+        restaurantController.updateRestaurantByAdmin
     );
 
 

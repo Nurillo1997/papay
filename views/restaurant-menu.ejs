@@ -57,8 +57,10 @@
                                     </td>
                                     <td>
                                         <select class="spec_select new_product_status" id="<%= value._id %>">
-                                            <option value="PAUSED" <%= value.product_status ==="PAUSED" ? "selected" : "" %> >PAUSED</option>
-                                            <option value="PROCESS" <%= value.product_status ==="PROCESS" ? "selected" : "" %> >PROCESS</option>
+                                            <option value="PAUSED" <%=value.product_status==="PAUSED" ? "selected" : ""
+                                                %> >PAUSED</option>
+                                            <option value="PROCESS" <%=value.product_status==="PROCESS" ? "selected"
+                                                : "" %> >PROCESS</option>
                                         </select>
                                     </td>
                                 </tbody>
@@ -205,9 +207,9 @@
 
                     try {
                         const response = await axios.post(
-                            `/resto/products/edit/${id}`, 
+                            `/resto/products/edit/${id}`,
                             { id: id, product_status: product_status }
-                            );
+                        );
                         const result = response.data;
                         console.log("result", result);
 
